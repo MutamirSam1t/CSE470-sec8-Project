@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Product Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{url_for('static',filename='./images/favicon.ico')}}">
+
+    <!-- Layout config Js -->
+    <script src="{{url_for('static',filename='./js/layout.js')}}"></script>
+    <!-- Bootstrap Css -->
+    <link href="{{url_for('static',filename="./css/bootstrap.min.css")}}" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{{url_for('static',filename="./css/icons.min.css")}}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{{url_for('static',filename="./css/app.min.css")}}" rel="stylesheet" type="text/css" />
+    <!-- custom Css-->
+    <link href="{{url_for('static',filename='./css/custom.min.css')}}" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+        <header id="page-topbar">
+            <div class="layout-width">
+                <div class="navbar-header">
+
+            
+            <div class="col-md-10  text-right">
+                
+            </div>
+            <div class="btn btn-link fw-medium text-decoration-none text-dark ">
+                        
+                <a href="/" class="btn btn-primary">Home</a>
+
+            </div>
+
+            <div class=" ">
+                        
+                <a href="/logout" class="btn btn-primary">Logout</a>
+
+            </div>
+
+            </div>
+        </div>
+        </header>
+        
+
+        <!-- ========== App Menu ========== -->
+        <div class="app-menu navbar-menu">
+            <!-- LOGO -->
+            <div class="navbar-brand-box">
+                <!-- Dark Logo-->
+                <a href="/" class="logo logo-dark">
+                    <span class="logo-sm">
+                        <img src="{{url_for('static',filename='./images/logo-dark.png')}}" alt="" height="22">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="{{url_for('static',filename='./images/logo-dark.png')}}" alt="" height="17">
+                    </span>
+                </a>
+                <!-- Light Logo-->
+                <a href="/" class="logo logo-light">
+                    <span class="logo-sm">
+                        <img src="{{url_for('static',filename='./images/logo-dark.png')}}" alt="" height="60">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="{{url_for('static',filename='./images/logo-dark.png')}}" alt="" height="60">
+                    </span>
+                </a>
+                <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
+                    id="vertical-hover">
+                    <i class="ri-record-circle-line"></i>
+                </button>
+            </div>
+
+            <div id="scrollbar">
+                <div class="container-fluid">
+
+                    <div id="two-column-menu">
+                    </div>
+                    <ul class="navbar-nav" id="navbar-nav">
+                        <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                         <!-- end Dashboard Menu -->
+                        <li class="nav-item">
+                            <a href="/profiles/{{current_user.id}}" class="nav-link" data-key="t-analytics"> Profile
+                            </a>
+                        </li>
+                        {% if user.aType == 'Buyer' %}
+                                            <li class="nav-item">
+                                                <a href="/cart" class="nav-link" data-key="t-crm"> Cart </a>
+                                            </li>
+                                            {% endif %}
+
+                    </ul>
+                </div>
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- Vertical Overlay-->
+        <div class="vertical-overlay"></div>
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                <h4 class="mb-sm-0">Product Details</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="/products">All Product</a></li>
+                                        <li class="breadcrumb-item active">{{prod.pname}}</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row gx-lg-5">
+                                        <div class="col-xl-4 col-md-8 mx-auto">
+                                            <div class="product-img-slider sticky-side-div">
+                                                <div class="swiper product-thumbnail-slider p-2 rounded bg-light">
+                                                    <div class="swiper-wrapper">
+                                                        <div class="swiper-slide">
+                                                            <img src="{{url_for('static',filename='./images/small/img-1.jpg')}}" alt=""
+                                                                class="img-fluid d-block" />
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+                                                </div>
+                                                <!-- end swiper thumbnail slide -->
+                                                
+                                                <!-- end swiper nav slide -->
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- end col -->
+                                        
+                                        {% if user.aType == 'Seller' %}
+
+                                        <div class="col-xl-8">
+                                            <div class="mt-xl-0 mt-5">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <h4>{{prod.pname}}</h4>
+                                                        <div class="hstack gap-3 flex-wrap">
+                                                            
+                                                            <div class="vr"></div>
+                                                            <div class="text-muted">Seller : 
+                                                                    <a href="/profiles/{{prod.pownerid}}" class="text-body fw-medium">{{prod.powner}}</a>
+                                                            </div>
+                                                            <div class="vr"></div>
+                                                            <div class="text-muted"> <span
+                                                                    class="text-body fw-medium"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                       
+                                                    </div>
+                                                </div>
+
+                                               
+
+                                                <div class="row mt-4">
+                                                    <div class="col-lg-3 col-sm-6">
+                                                        <div class="p-2 border border-dashed rounded">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar-sm me-2">
+                                                                    <div
+                                                                        class="avatar-title rounded bg-transparent text-success fs-24">
+                                                                        <i class="ri-money-dollar-circle-fill"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex-grow-1">
+                                                                    <p class="text-muted mb-1">Per day rent Price :</p>
+                                                                    <h5 class="mb-0">{{prod.pprice}}</h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                    {% else %}
+
+                                    <div class="col-xl-8">
+                                        <div class="mt-xl-0 mt-5">
+                                            <div class="d-flex">
+                                                <div class="flex-grow-1">
+                                                    <h4>{{prod.pname}}</h4>
+                                                    <div class="hstack gap-3 flex-wrap">
+                                                        
+                                                        <div class="vr"></div>
+                                                        <div class="text-muted">Seller : 
+                                                                <a href="/profiles/{{prod.pownerid}}" class="text-body fw-medium">{{prod.powner}}</a>
+                                                        </div>
+                                                        <div class="vr"></div>
+                                                        <div class="text-muted"> <span
+                                                                class="text-body fw-medium"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                   
+                                                </div>
+                                            </div>
+
+                                           
+
+                                            <div class="row mt-4">
+                                                <div class="col-lg-3 col-sm-6">
+                                                    <div class="p-2 border border-dashed rounded">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="avatar-sm me-2">
+                                                                <div
+                                                                    class="avatar-title rounded bg-transparent text-success fs-24">
+                                                                    <i class="ri-money-dollar-circle-fill"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-grow-1">
+                                                                <p class="text-muted mb-1">Per day rent Price :</p>
+                                                                <h5 class="mb-0">{{prod.pprice}}</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% if user.aType == 'Buyer' %}
+                                                <div class="col-lg-3 col-sm-6">
+                                                    <div class="p-2 border border-dashed rounded">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="avatar-sm me-2">
+                                                                <div
+                                                                    class="avatar-title rounded bg-transparent text-success fs-24">
+                                                                    <i class="ri-stack-fill"></i>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="flex-grow-1">
+                                                                {% if cartitems >= 1 %}
+                                                                    <h5 class="fs-14">Select one order at a time in cart.</h5>
+                                                                {% else %}
+                                                                <a href="/addtocart/{{prod.pid}}" class="text-muted mb-1">Add to cart</a>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                                <div class="mt-4 text-muted">
+                                                    <h5 class="fs-14">Description :</h5>
+                                                    <p>{{prod.pdescription}}</p>
+                                                </div>
+
+                                    </div>
+                                </div>
+                                </div>
+
+                                {% endif %}
+                                                    <!-- end col -->
+                                                    
+                                                    
+
+                                                    <!-- end col -->
+                                                    
+                                                    
+                                                    
+
+                                                    
+
+
+                                                    <!-- end col -->
+                                                    <div class="col-lg-3 col-sm-6">
+                                                        
+                                                    </div>
+                                                    <!-- end col -->
+                                                </div>
+
+                                                
+                                                <!-- end row -->
+
+                                               
+
+                                                
+
+
+                                                
+                                                <!-- product-content -->
+
+                                                
+                                                    <!-- end Ratings & Reviews -->
+                                                </div>
+                                                <!-- end card body -->
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                    </div>
+                                    <!-- end row -->
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+
+                </div>
+                <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>document.write(new Date().getFullYear())</script> © Rezwan Ahmed.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Design & Develop by Rezwan Ahmed
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+
+
+    
+
+    
+
+    <!-- JAVASCRIPT -->
+    <script src="{{url_for('static',filename='./libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+   <script src="{{url_for('static',filename='./libs/simplebar/simplebar.min.js')}}"></script>
+   <script src="{{url_for('static',filename='./libs/node-waves/waves.min.js')}}"></script>
+   <script src="{{url_for('static',filename='./libs/feather-icons/feather.min.js')}}"></script>
+   <script src="{{url_for('static',filename='./js/pages/plugins/lord-icon-2.1.0.js')}}"></script>
+   <script src="{{url_for('static',filename='./js/plugins.js')}}"></script>
+
+    <!-- profile-setting init js -->
+    
+    <script src="{{url_for('static',filename='./js/pages/profile-setting.init.js')}}"></script>
+
+    <!-- App js -->
+    
+    <script src="{{url_for('static',filename='./js/app.js')}}"></script>
+</body>
+
+</html>

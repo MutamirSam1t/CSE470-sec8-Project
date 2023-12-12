@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Available for rent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{url_for('static',filename='./images/favicon.ico')}}">
+
+    <!-- Layout config Js -->
+    <script src="{{url_for('static',filename='./js/layout.js')}}"></script>
+    <!-- Bootstrap Css -->
+    <link href="{{url_for('static',filename="./css/bootstrap.min.css")}}" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{{url_for('static',filename="./css/icons.min.css")}}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{{url_for('static',filename="./css/app.min.css")}}" rel="stylesheet" type="text/css" />
+    <!-- custom Css-->
+    <link href="{{url_for('static',filename='./css/custom.min.css')}}" rel="stylesheet" type="text/css" />
+
+    <style>
+        .cards-wrapper22 {
+        display: flex;
+        flex-wrap: wrap;
+        columns: 4;
+        }
+
+
+        .truncated-paragraph {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 3000px; /* Adjust the value to control the number of characters displayed */
+}
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <header id="page-topbar">
+    <div class="layout-width">
+        <div class="navbar-header">
+
+            
+            <div class="col-md-10  text-right">
+                
+            </div>
+            <div class="btn btn-link fw-medium text-decoration-none text-dark ">
+                        
+                <a href="/" class="btn btn-primary">Home</a>
+
+            </div>
+
+            <div class=" ">
+                        
+                <a href="/logout" class="btn btn-primary">Logout</a>
+
+            </div>
+
+        </div>
+    </div>
+</header>
+        <!-- ========== App Menu ========== -->
+        <div class="app-menu navbar-menu">
+            <!-- LOGO -->
+            <div class="navbar-brand-box">
+                <!-- Dark Logo-->
+                <a href="/" class="logo logo-dark">
+                    <span class="logo-sm">
+                        <img src="{{url_for('static',filename='./images/logo-dark.png')}}" alt="" height="22">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="{{url_for('static',filename='./images/logo-dark.png')}}" alt="" height="17">
+                    </span>
+                </a>
+                <!-- Light Logo-->
+                <a href="/" class="logo logo-light">
+                    <span class="logo-sm">
+                        <img src="{{url_for('static',filename='./images/logo-dark.png')}}" alt="" height="60">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="{{url_for('static',filename='./images/logo-dark.png')}}" alt="" height="60">
+                    </span>
+                </a>
+                <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
+                    id="vertical-hover">
+                    <i class="ri-record-circle-line"></i>
+                </button>
+            </div>
+
+            <div id="scrollbar">
+                <div class="container-fluid">
+
+                    <div id="two-column-menu">
+                    </div>
+                    <ul class="navbar-nav" id="navbar-nav">
+                        <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                         <!-- end Dashboard Menu -->
+                         <li class="nav-item">
+                            <a href="/profiles/{{current_user.id}}" class="nav-link" data-key="t-analytics"> Profile
+                            </a>
+                        </li>
+                        {% if user.aType == 'Buyer' %}
+                                            <li class="nav-item">
+                                                <a href="/cart" class="nav-link" data-key="t-crm"> Cart </a>
+                                            </li>
+                                            {% endif %}
+                        
+                        
+
+                    </ul>
+                </div>
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- Vertical Overlay-->
+        <div class="vertical-overlay"></div>
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <div class="position-relative mx-n4 mt-n4">
+                        
+                    </div>
+                    <div class="col-xxl-8">
+                        <h5 class="mb-3 p-3">All Products</h5> 
+                    {% if user.aType == 'Seller' %}
+            
+                    <div class="row">
+                        
+                        {% for p in prods %}
+                        
+                            <div class="col-sm-6 col-xl-5 flex-container" >
+                            <!-- Simple card -->
+                            <div class="card">
+                                <img class="card-img-top img-fluid" src="{{url_for('static',filename='./images/small/img-1.jpg')}}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-2">{{p.pname}}</h4>
+                                    <p class="card-text text-muted">{{p.ptype}}</p>
+                                    <p class="card-text text-muted">Product Listed By: {{user.username}}</p>
+                                    <p class="card-text truncated-paragraph" >{{p.pdescription}}</p>
+                                    <div class="text-end">
+                                        <a href="/productDetails/{{p.pid}}" class="btn btn-primary">View Product</a>
+                                        <a href="/delAProd/{{p.pid}}" type="button" class="btn btn-danger">Delete</a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <!--
+                                
+                                
+                                <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Product Type</th>
+                            <th scope="col">Product Price</th>
+                            <th scope="col">Product Description</th>
+                            <th scope="col">Product Owner</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        {% for p in prods %}
+                        <tbody>
+                          <tr>
+                            <th scope="row">{{p.pid}}</th>
+                            <td>{{p.pname}}</td>
+                            <td>{{p.ptype}}</td>
+                            <td>{{p.pprice}}</td>
+                            <td>{{p.pdescription}}</td>
+                            <td>{{user.Fname}} {{user.Lname}}</td>
+                            <td><a href="/delAProd/{{p.pid}}" type="button" class="btn btn-danger">Delete</button></td>
+                          </tr>
+                          
+                        </tbody>
+                        {% endfor %}
+                      </table>  
+                      
+                      end card -->
+                            
+                        
+                        
+                        </div>
+                        
+                        {% endfor %}
+                    </div>
+
+                    {% elif user.aType == 'Lessor' %}
+            
+                    <div class="row">
+                        
+                        {% for p in prods %}
+                        
+                            <div class="col-sm-6 col-xl-5 flex-container" >
+                            <!-- Simple card -->
+                            <div class="card">
+                                <img class="card-img-top img-fluid" src="{{url_for('static',filename='./images/small/img-1.jpg')}}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-2">{{p.p_name}}</h4>
+                                    <p class="card-text text-muted">{{p.p_type}}</p>
+                                    <p class="card-text text-muted">Product Listed By: {{user.username}}</p>
+                                    <p class="card-text text-muted">Product Renting Area: {{p.p_area}}</p>
+                                    <p class="card-text truncated-paragraph" >{{p.p_description}}</p>
+                                    <div class="text-end">
+                                        <a href="/productDetails2/{{p.p_id}}" class="btn btn-primary">View Product</a>
+                                        <a href="/delAProd2/{{p.p_id}}" type="button" class="btn btn-danger">Delete</a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        {% endfor %}
+
+                    
+
+                      {% elif user.aType == 'Buyer' %}
+
+                      <div class="row">
+                        {% for p in Aprods %}
+                        
+                            <div class="col-sm-6 col-xl-5 flex-container" >
+                            <!-- Simple card -->
+                            <div class="card">
+                                <img class="card-img-top img-fluid" src="{{url_for('static',filename='./images/small/img-1.jpg')}}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-2">{{p.pname}}</h4>
+                                    <p class="card-text text-muted">{{p.ptype}}</p>
+                                    <p class="card-text truncated-paragraph" >{{p.pdescription}}</p>
+                                    <div class="text-end">
+                                        <a href="/productDetails/{{p.pid}}" class="btn btn-primary">View Product</a>
+                                    </div>
+                                </div>
+                            </div><!-- end card -->
+                            </div>
+                        
+                        {% endfor %}
+                    </div>
+
+                    {% elif user.aType == 'Lessee' %}
+
+                      <div class="row">
+                        {% for p in Aprods %}
+                        
+                            <div class="col-sm-6 col-xl-5 flex-container" >
+                            <!-- Simple card -->
+                            <div class="card">
+                                <img class="card-img-top img-fluid" src="{{url_for('static',filename='./images/small/img-1.jpg')}}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-2">{{p.p_name}}</h4>
+                                    <p class="card-text text-muted">{{p.p_type}}</p>
+                                    <p class="card-text truncated-paragraph" >{{p.p_description}}</p>
+                                    <div class="text-end">
+                                        <a href="/productDetails2/{{p.p_id}}" class="btn btn-primary">View Product</a>
+                                    </div>
+                                </div>
+                            </div><!-- end card -->
+                            </div>
+                        
+                        {% endfor %}
+
+            
+
+
+                        {% endif %}
+                        
+
+                    </div>
+                      
+                      
+
+            <!-- End Page-content -->
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>document.write(new Date().getFullYear())</script> © Group 6.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Design & Develop by Group 6
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+
+
+    <!--start back-to-top-->
+    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+    <!--end back-to-top-->
+
+    
+
+    <!-- Theme Settings -->
+    
+
+    <!-- JAVASCRIPT -->
+    <script src="{{url_for('static',filename='./libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+   <script src="{{url_for('static',filename='./libs/simplebar/simplebar.min.js')}}"></script>
+   <script src="{{url_for('static',filename='./libs/node-waves/waves.min.js')}}"></script>
+   <script src="{{url_for('static',filename='./libs/feather-icons/feather.min.js')}}"></script>
+   <script src="{{url_for('static',filename='./js/pages/plugins/lord-icon-2.1.0.js')}}"></script>
+   <script src="{{url_for('static',filename='./js/plugins.js')}}"></script>
+
+    <!-- profile-setting init js -->
+    
+    <script src="{{url_for('static',filename='./js/pages/profile-setting.init.js')}}"></script>
+
+    <!-- App js -->
+    
+    <script src="{{url_for('static',filename='./js/app.js')}}"></script>
+</body>
+
+</html>
